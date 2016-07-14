@@ -9,11 +9,11 @@
   "license": "ISC",
   "dependencies": {
     "browserify": "^13.0.1",
-    "firebase": "^3.2.0",
+    "firebase": "^2.0.6",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.0",
     "gulp-react": "^3.1.0",
-    "gulp-sass": "^2.3.2",
+    "gulp-sass": "*",
     "gulp-server-livereload": "^1.8.1",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.8",
