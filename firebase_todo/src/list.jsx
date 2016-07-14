@@ -11,7 +11,8 @@ module.exports = React.createClass({
     },
 
     renderList: function() {
-        if(this.props.items && Object.keys(this.props.items).length === 0) {
+        console.log();
+        if(Object.keys(this.props.items).length === 0 || this.props.items[".value"] === null) {
             return(
                 <h4>
                   Add a todo to get start
@@ -20,14 +21,16 @@ module.exports = React.createClass({
         } else {
             var children = [];
             for(var key in this.props.items) {
-                var item = this.props.items[key];
-                item.key = key;
-                children.push(
-                    <ListItem 
-                      key={key}
-                      item={item}>
-                    </ListItem>
-                );
+                if(this.props.items[key] !== "item") {
+                    var item = this.props.items[key];
+                    item.key = key;
+                    children.push(
+                        <ListItem 
+                        key={key}
+                        item={item}>
+                        </ListItem>
+                    );
+                }
             }
             return children;
         }

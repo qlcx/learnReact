@@ -7,6 +7,10 @@ module.exports = React.createClass({
         }
     },
 
+    handleData: function() {
+      
+    },
+
     render: function() {
         return(
             <div className="input-group">
@@ -15,7 +19,8 @@ module.exports = React.createClass({
               </span>
               <input type="text"
                 className="form-control"
-                value={this.state.text}/>
+                value={this.state.text}
+                onChange={this.handleData}/>
               <span className="input-group-btn">
                 <button className="btn btn-default">
                   Delete
