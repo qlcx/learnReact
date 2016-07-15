@@ -42,7 +42,7 @@ var Hello = React.createClass({
           </h2>
           <Header itemsStore={this.firebaseRefs.items} />
           <hr />
-          <div className={"contant" + (this.state.loaded ? "load" : "")}>
+          <div className={"content " + (this.state.loaded ? "loaded" : "")}>
             <List items={this.state.items}/>
           </div>
         </div>
