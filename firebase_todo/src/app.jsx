@@ -5,8 +5,12 @@ var Firebase = require('firebase');
 
 var Header = require('./header');
 var List = require('./list');
-//baas
-var rootUrl = 'https://todo-b9ca0.firebaseio.com/';
+
+var config = {
+    apiKey: "AIzaSyAKQZnJyI-yOa0jCnK0iIWLatGrYdmMf5k",
+    authDomain: "todo-b9ca0.firebaseapp.com",
+    databaseURL: "https://todo-b9ca0.firebaseio.com"
+};
 
 var Hello = React.createClass({
   mixins: [ReactFire],  //ES6中没有mixins
@@ -19,7 +23,8 @@ var Hello = React.createClass({
   },
 
   componentWillMount: function() {
-    fb = new Firebase(rootUrl + 'item/');
+    Firebase.initializeApp(config);
+    var fb = Firebase.database().ref("items");
     this.bindAsObject(fb, 'items');
     fb.on('value', this.handleDataLoaded);
   },

@@ -11,7 +11,6 @@ module.exports = React.createClass({
     },
 
     renderList: function() {
-        console.log();
         if(Object.keys(this.props.items).length === 0 || this.props.items[".value"] === null) {
             return(
                 <h4>
@@ -21,7 +20,7 @@ module.exports = React.createClass({
         } else {
             var children = [];
             for(var key in this.props.items) {
-                if(this.props.items[key] !== "item") {
+                if(this.props.items[key] !== "items") {
                     var item = this.props.items[key];
                     item.key = key;
                     children.push(
