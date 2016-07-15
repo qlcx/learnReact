@@ -37,13 +37,35 @@ module.exports = React.createClass({
       });
     },
 
+    handleUndoClick: function() {
+      this.setState({
+        text: this.props.item.text,
+        textChanged: false
+      });
+    },
+
+    handleSaveClick: function() {
+      this.fb.update({text: this.state.text});
+      this.setState({textChanged: false});
+    },
+
     changesButtons: function() {
       if(!this.state.textChanged) {
         return null;
       } else {
         return [
-          <button key={1} className="btn btn-default">Save</button>,
-          <button key={2} className="btn btn-default">Undo</button>
+          <button 
+            key={1} 
+            onClick={this.handleSaveClick}
+            className="btn btn-default">
+            Save
+          </button>,
+          <button
+            key={2}
+            onClick={this.handleUndoClick} 
+            className="btn btn-default">
+            Undo
+          </button>
         ];
       }
     },
@@ -57,6 +79,7 @@ module.exports = React.createClass({
                   onChange={this.handleDoneChange} />
               </span>
               <input type="text"
+                disabled={this.state.done}
                 className="form-control"
                 value={this.state.text}
                 onChange={this.handleTextChange}/>
