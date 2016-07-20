@@ -1,16 +1,20 @@
 var React = require('react');
 var Reflux = require('reflux');
 var ImageStore = require('../stores/image-store');
+var CommentStore = require('../stores/comment-store');
 var Actions = require('../actions');
+var CommentBox = require('./comment-box');
 
 module.exports = React.createClass({
     mixins: [
-        Reflux.listenTo(ImageStore, 'onChange')
+        Reflux.listenTo(ImageStore, 'onChange'),
+        Reflux.listenTo(CommentStore, 'onChange')
     ],
 
     getInitialState: function() {
         return {
-            image: {}
+            image: {},
+            comments: {}
         }
     },
 
@@ -20,14 +24,15 @@ module.exports = React.createClass({
 
     onChange: function() {
         this.setState({
-            image: ImageStore.find(this.props.params.id)
+            image: ImageStore.find(this.props.params.id),
+            comments: CommentStore.comment
         });
     },
 
     renderImage: function() {
         if(this.state.image.animated) {
             return(
-                <video preload='auto' autoPlay='autoPlay' loop='loop' webkit-playsinline>
+                <video preload='auto' autoPlay='autoPlay' loop='loop'>
                   <source src={this.state.image.mp4} type="video/mp4"></source>
                 </video>
             ); 
@@ -50,13 +55,22 @@ module.exports = React.createClass({
                   <h5>{this.state.image.description}</h5>
                 </div>
               </div>
+              <h3>Comments</h3>
+              {this.renderComments()}
             </div>
         );
     },
 
+    renderComments: function() {
+        if(!this.state.comments) {
+            return null;
+        }
+        return <CommentBox comments={this.state.comments} />
+    },
+
     render: function() {
         return(
-            <div>
+            <div className="image-detail">
               {eval(this.state.image) ? this.renderContent() : null}
             </div>
         );
