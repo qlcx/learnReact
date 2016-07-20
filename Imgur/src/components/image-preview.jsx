@@ -1,4 +1,6 @@
 var React = require('react');
+var ReactRouter = require('react-router');
+var Link = ReactRouter.Link;
 
 module.exports = React.createClass({
     getInitialState: function() {
@@ -22,6 +24,22 @@ module.exports = React.createClass({
         );
     },
 
+    icon: function() {
+        return(
+            <span className="glyphicon glyphicon-play"></span>
+        );
+    },
+
+    inset: function() {
+        return(
+            <div className="inset">
+              Views: {this.props.views}
+              <br />
+              Upvotes: {this.props.ups}
+            </div>
+        ); 
+    },
+
     handleMouseEnter: function() {
         this.setState({hovering: true});
     },
@@ -32,13 +50,15 @@ module.exports = React.createClass({
 
     render: function() {
         return(
-            <div 
+            <Link
+              to={"images/" + this.props.id} 
               className="image-preview"
               onMouseEnter={this.handleMouseEnter}
-              onMouseLeave={this.handleMouseLeave}
-              >
+              onMouseLeave={this.handleMouseLeave} >
               {this.props.animated && this.state.hovering ? this.video() : this.image()}
-            </div>
+              {this.props.animated && !this.state.hovering ? this.icon() : null}
+              {this.state.hovering ? this.inset() : null}
+            </Link>
         );
     }
 })
