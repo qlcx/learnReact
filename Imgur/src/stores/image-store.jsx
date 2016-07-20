@@ -8,7 +8,6 @@ module.exports = Reflux.createStore({
     getImages: function(topicId) {
         return Api.get('topics/' + topicId)
             .then(function(json) {
-                console.log(json.data);
                 this.images = _.reject(json.data, function(image) {
                     return image.is_album
                 });

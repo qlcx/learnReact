@@ -1,7 +1,15 @@
 .image-preview {
     display: inline-block;
+
     img {
         height: 200px;
         width: 200px;
+    }
+
+    video {
+        height: 200px;
+        width: 200px;
+        vertical-align: middle;
+        background-color: black;
     }
 }
