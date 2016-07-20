@@ -1,5 +1,14 @@
 .header .active {
   font-weight: 900; }
 
+.image-preview {
+  display: inline-block; }
+  .image-preview img {
+    height: 200px;
+    width: 200px; }
+
 .black {
   color: black; }
+
+.topic {
+  text-align: center; }
